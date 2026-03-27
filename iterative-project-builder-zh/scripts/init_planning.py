@@ -147,11 +147,11 @@ code here
 
 ### API 响应格式
 ```json
-{
+{{
   "success": true,
-  "data": {},
+  "data": {{}},
   "error": null
-}
+}}
 ```
 
 ## 资源
