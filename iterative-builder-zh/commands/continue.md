@@ -1,6 +1,6 @@
 ---
-name: continue
-description: 恢复中断的项目构建会话。读取 task_plan.md、findings.md、progress.md 恢复上下文，继续完成项目。用法：/continue [项目目录]
+name: iterative-builder-zh:continue
+description: 恢复中断的项目构建会话。读取 task_plan.md、findings.md、progress.md 恢复上下文，继续完成项目。用法：/iterative-builder-zh:continue [项目目录]
 argument-hint: "[项目目录路径，默认当前目录]"
 allowed-tools:
   - Read

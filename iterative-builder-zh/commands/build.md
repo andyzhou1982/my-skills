@@ -1,6 +1,6 @@
 ---
-name: build
-description: 从需求描述循序渐进构建生产级项目。将复杂系统拆分为可学习的增量阶段，从 MVP 到生产级。用法：/build <需求描述>
+name: iterative-builder-zh:build
+description: 从需求描述循序渐进构建生产级项目。将复杂系统拆分为可学习的增量阶段，从 MVP 到生产级。用法：/iterative-builder-zh:build <需求描述>
 argument-hint: <需求描述文本>
 allowed-tools:
   - Read

@@ -1,6 +1,6 @@
 ---
-name: fix
-description: 报告并修复项目构建过程中的 bug。会自动分析影响范围，判断其他阶段是否需要同步修改。用法：/fix <bug描述>
+name: iterative-builder-zh:fix
+description: 报告并修复项目构建过程中的 bug。会自动分析影响范围，判断其他阶段是否需要同步修改。用法：/iterative-builder-zh:fix <bug描述>
 argument-hint: <bug描述或问题现象>
 allowed-tools:
   - Read
