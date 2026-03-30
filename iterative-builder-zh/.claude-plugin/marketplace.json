@@ -1,0 +1,35 @@
+{
+  "name": "iterative-builder-zh",
+  "title": "循序渐进项目构建器",
+  "description": "从需求文档循序渐进构建生产级项目，支持分阶段实现、会话恢复和 bug 修复",
+  "category": "development",
+  "tags": ["project-builder", "iterative", "chinese", "staged-development", "mvp"],
+  "version": "1.0.0",
+  "author": "Claude User",
+  "commands": [
+    {
+      "name": "build",
+      "description": "从需求描述启动项目构建"
+    },
+    {
+      "name": "continue",
+      "description": "恢复中断的项目会话"
+    },
+    {
+      "name": "fix",
+      "description": "修复 bug 并分析影响范围"
+    }
+  ],
+  "agents": [
+    {
+      "name": "bug-fixer",
+      "description": "修正 bug 并评估对其他阶段的影响"
+    }
+  ],
+  "skills": [
+    {
+      "name": "iterative-project-builder-zh",
+      "description": "循序渐进构建生产级项目的方法论"
+    }
+  ]
+}
