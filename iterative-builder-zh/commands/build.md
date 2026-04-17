@@ -68,16 +68,61 @@ allowed-tools:
    | ... | ... | ... |
    | Day N | 生产 | 部署就绪 |
 
-### 第四步：开始 Day 1 实现
+### 第四步：逐日实现（Day 1 → Day N）
 
-按照 skill 中的方法论实现 MVP：
-- 创建 `day1/` 目录结构
-- 实现核心流程（输入 → 处理 → 输出）
+**每个 Day 都遵循以下循环：**
+
+#### 4.1 实现当前 Day
+
+按照 skill 中的方法论实现当前阶段：
+- 复制前一天目录（Day 1 除外）
+- 添加本阶段新功能
 - 确保端到端可用
 - 添加双语注释
 
+#### 4.2 验证当前 Day
+
+完成实现后执行验证：
+```bash
+# 后端编译检查
+cd dayN/backend && python -m py_compile src/*.py
+
+# 前端构建检查
+cd dayN/frontend && npm run build
+```
+
+#### 4.3 更新规划文件
+
+更新 task_plan.md、findings.md、progress.md 记录本阶段进度。
+
+#### 4.4 询问用户是否继续
+
+**必须使用 AskUserQuestion 询问用户**，不得自动开始下一个 Day：
+
+```json
+{
+  "questions": [{
+    "question": "Day N [主题] 已完成！是否继续开始 Day N+1: [下一阶段主题]？",
+    "header": "继续构建",
+    "options": [
+      {"label": "继续 Day N+1", "description": "开始实现下一阶段: [下一阶段主题]"},
+      {"label": "暂停", "description": "保存进度，稍后用 /iterative-builder-zh:continue 恢复"},
+      {"label": "修改计划", "description": "调整后续阶段的规划后再继续"}
+    ]
+  }]
+}
+```
+
+**等待用户响应后：**
+- **继续** → 执行 Day N+1，回到步骤 4.1
+- **暂停** → 更新 progress.md 记录停止点，结束本次会话
+- **修改计划** → 询问用户如何调整，更新 task_plan.md 后继续
+
+**重复此循环直到所有 Day 完成。**
+
 ## 使用 AskUserQuestion 示例
 
+### 技术栈选择
 ```json
 {
   "questions": [{
@@ -92,9 +137,25 @@ allowed-tools:
 }
 ```
 
+### 阶段完成确认
+```json
+{
+  "questions": [{
+    "question": "Day 2 数据预处理已完成！是否继续开始 Day 3: 检索优化？",
+    "header": "继续构建",
+    "options": [
+      {"label": "继续 Day 3", "description": "开始实现检索优化"},
+      {"label": "暂停", "description": "保存进度，稍后恢复"},
+      {"label": "修改计划", "description": "调整后续阶段规划"}
+    ]
+  }]
+}
+```
+
 ## 注意事项
 
 - 每个阶段必须独立可运行
 - 代码注释使用双语格式（英文 + 中文）
 - 在每个阶段完成后验证构建
 - 更新规划文件记录进度
+- **每个 Day 完成后必须询问用户，不得自动进入下一个 Day**
