@@ -55,10 +55,18 @@ allowed-tools:
 
 2. **创建项目目录** - 在当前工作目录下创建项目文件夹（基于需求推断项目名称）
 
-3. **初始化规划文件** - 运行脚本或手动创建：
+3. **初始化规划文件** - **必须运行 skill 中的初始化脚本创建，不得自行编写**：
+
+   ```bash
+   cd <项目目录> && python skills/iterative-project-builder-zh/scripts/init_planning.py <项目名称>
+   ```
+
+   脚本会自动创建：
    - `task_plan.md` - 阶段规划
    - `findings.md` - 研究笔记
    - `progress.md` - 进度日志
+
+   **禁止**使用 Write/Edit 工具自行创建这三个文件，必须通过脚本生成。
 
 4. **制定阶段计划**：
    | 天数 | 主题 | 目标 |
