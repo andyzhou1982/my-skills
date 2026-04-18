@@ -103,14 +103,35 @@ cd dayN/frontend && npm run build
 
 更新 task_plan.md、findings.md、progress.md 记录本阶段进度。
 
-#### 4.4 询问用户是否继续
+#### 4.4 询问是否进行代码审查
+
+**每个 Day 完成后必须先询问是否进行代码审查**，使用 AskUserQuestion：
+
+```json
+{
+  "questions": [{
+    "question": "Day N [主题] 已完成并通过验证！是否对 Day N 的代码进行审查？",
+    "header": "代码审查",
+    "options": [
+      {"label": "进行审查", "description": "对 Day N 执行代码审查，检查质量、安全、性能等问题"},
+      {"label": "跳过审查", "description": "跳过审查，直接进入下一步"}
+    ]
+  }]
+}
+```
+
+**如果用户选择审查**：调用 `/iterative-builder-zh:codereview DayN` 命令执行审查，审查完成后再进入步骤 4.5。
+
+**如果用户跳过**：直接进入步骤 4.5。
+
+#### 4.5 询问用户是否继续下一个 Day
 
 **必须使用 AskUserQuestion 询问用户**，不得自动开始下一个 Day：
 
 ```json
 {
   "questions": [{
-    "question": "Day N [主题] 已完成！是否继续开始 Day N+1: [下一阶段主题]？",
+    "question": "是否继续开始 Day N+1: [下一阶段主题]？",
     "header": "继续构建",
     "options": [
       {"label": "继续 Day N+1", "description": "开始实现下一阶段: [下一阶段主题]"},
@@ -149,7 +170,21 @@ cd dayN/frontend && npm run build
 ```json
 {
   "questions": [{
-    "question": "Day 2 数据预处理已完成！是否继续开始 Day 3: 检索优化？",
+    "question": "Day 2 数据预处理已完成并通过验证！是否对 Day 2 的代码进行审查？",
+    "header": "代码审查",
+    "options": [
+      {"label": "进行审查", "description": "检查 Day 2 的代码质量、安全性等"},
+      {"label": "跳过审查", "description": "跳过审查，继续下一步"}
+    ]
+  }]
+}
+```
+
+### 继续下一个 Day
+```json
+{
+  "questions": [{
+    "question": "是否继续开始 Day 3: 检索优化？",
     "header": "继续构建",
     "options": [
       {"label": "继续 Day 3", "description": "开始实现检索优化"},
