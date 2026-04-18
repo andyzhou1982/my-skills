@@ -106,8 +106,9 @@ cc --plugin-dir /path/to/iterative-builder-zh
 | Command | `/iterative-builder-zh:build` | 启动项目构建流程 |
 | Command | `/iterative-builder-zh:continue` | 恢复中断的项目会话 |
 | Command | `/iterative-builder-zh:fix` | 触发 bug 修复流程 |
-| Command | `/iterative-builder-zh:codereview` | 代码审查与跨阶段影响分析 |
+| Command | `/iterative-builder-zh:codereview` | 手动触发代码审查 |
 | Agent | `bug-fixer` | 修正 bug 并分析影响范围 |
+| Agent | `code-reviewer` | 代码审查与跨阶段影响分析 |
 | Skill | `iterative-project-builder-zh` | 项目构建方法论和模板 |
 | Skill | `code-review-zh` | 代码审查方法论 |
 

@@ -10,6 +10,7 @@ allowed-tools:
   - Glob
   - Grep
   - AskUserQuestion
+  - Agent
 ---
 
 # 项目构建命令
@@ -120,7 +121,16 @@ cd dayN/frontend && npm run build
 }
 ```
 
-**如果用户选择审查**：调用 `/iterative-builder-zh:codereview DayN` 命令执行审查，审查完成后再进入步骤 4.5。
+**如果用户选择审查**：使用 Agent 工具调用 `iterative-builder-zh:code-reviewer` agent 执行审查，以减轻主 agent 上下文负担。
+
+```json
+{
+  "subagent_type": "iterative-builder-zh:code-reviewer",
+  "prompt": "请对项目 <项目路径> 的 Day N 进行代码审查。先读取 task_plan.md、findings.md、progress.md 了解项目上下文，然后扫描 dayN/ 目录进行五维度审查。"
+}
+```
+
+agent 会返回审查报告和修改建议。审查完成后再进入步骤 4.5。
 
 **如果用户跳过**：直接进入步骤 4.5。
 
